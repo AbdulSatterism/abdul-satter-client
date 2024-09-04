@@ -1,90 +1,83 @@
 "use client";
 
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
+import myImage from "../../assets/satter.png";
+import Image from "next/image";
+import Link from "next/link";
 
+// const nameVariants = {
+//   hidden: { y: -50, opacity: 0 },
+//   visible: (i: number) => ({
+//     y: 0,
+//     opacity: 1,
+//     transition: {
+//       delay: i * 0.1,
+//       type: "spring",
+//       stiffness: 100,
+//     },
+//   }),
+// };
 const Banner = () => {
-  const developerName = "John Doe";
-  const developerTitle = "Full Stack Developer";
-  const description = "I build scalable and robust web applications.";
+  //   const renderNameWithAnimation = (name: string) => {
+  //     return name.split("").map((letter, index) => (
+  //       <motion.span
+  //         key={index}
+  //         custom={index}
+  //         variants={nameVariants}
+  //         initial="hidden"
+  //         animate="visible"
+  //         className="inline-block"
+  //       >
+  //         {letter === " " ? "\u00A0" : letter}
+  //       </motion.span>
+  //     ));
+  //   };
 
-  const container = {
-    hidden: { opacity: 0 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2 * i,
-      },
-    }),
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: -100 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { type: "spring", stiffness: 50 },
-    },
-  };
-
-  const backgroundGradient = {
-    initial: { backgroundPosition: "0% 50%" },
-    animate: {
-      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-      transition: {
-        duration: 10,
-        ease: "linear",
-        repeat: Infinity,
-      },
-    },
-  };
+  //   const titleVariants = {
+  //     hidden: { x: -100, opacity: 0 },
+  //     visible: {
+  //       x: 0,
+  //       opacity: 1,
+  //       transition: {
+  //         duration: 0.5,
+  //         ease: "easeInOut",
+  //       },
+  //     },
+  //   };
 
   return (
-    <motion.div
-      className="text-white py-20"
-      style={{
-        background:
-          "linear-gradient(270deg, #1f2937, #4b5563, #374151, #1f2937)",
-        backgroundSize: "400% 400%",
-      }}
-      variants={backgroundGradient}
-      initial="initial"
-      animate="animate"
-    >
-      <div className="container mx-auto text-center">
-        <motion.h1
-          className="text-4xl md:text-6xl font-bold mb-4"
-          variants={container}
-          initial="hidden"
-          animate="visible"
+    <div className="flex flex-col md:flex-row items-center justify-between bg-gradient-to-r from-[#030c3c] to-[#01051b] p-8 md:p-16 min-h-screen">
+      <div className="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+        <h1 className="text-5xl font-bold text-orange-500 mb-4">
+          Md. Abdul Satter
+        </h1>
+        <h2 className="text-3xl  text-gray-300 font-light mb-6">
+          Full Stack Developer(MERN)
+        </h2>
+        <p className="text-xl text-gray-400 mb-6 justify-center">
+          I am expert as a full stack developer.I have the ability to build web
+          applications that deliver exceptional results.I am expert and
+          comfortable in Javascript | Typescript | React js | Next js | Redux
+          RTK | Mongodb | Mongoose | Node js | Express js.
+        </p>
+        <Link
+          href="https://drive.google.com/file/d/1Vpc9HYjEcUO-as0tA5TGNLgwzKjdqUQL/view?usp=drive_link"
+          target="_blank"
         >
-          {developerName.split("").map((letter, index) => (
-            <motion.span key={index} className="inline-block" variants={item}>
-              {letter}
-            </motion.span>
-          ))}
-        </motion.h1>
-        <motion.h2
-          className="text-2xl md:text-4xl font-semibold mb-4"
-          variants={container}
-          initial="hidden"
-          animate="visible"
-          custom={2}
-        >
-          {developerTitle.split("").map((letter, index) => (
-            <motion.span key={index} className="inline-block" variants={item}>
-              {letter}
-            </motion.span>
-          ))}
-        </motion.h2>
-        <p className="text-lg md:text-xl">{description}</p>
-        {/* <img
-          src="/path-to-image.jpg"
-          alt="Developer"
-          className="mt-8 mx-auto rounded-full w-32 h-32 object-cover shadow-lg"
-        /> */}
+          <button className="btn px-4 bg-gradient-to-r from-orange-500 to-blue-950 hover:bg-slate-100 text-white">
+            See Resume
+          </button>
+        </Link>
       </div>
-    </motion.div>
+
+      <div className="md:w-1/3 flex items-center justify-center ">
+        <Image
+          src={myImage}
+          alt="Profile Image"
+          className="w-52 h-52 md:w-64 md:h-64 rounded-full object-cover border-2 border-white shadow-lg transition duration-500 transform group-hover:scale-105"
+        />
+      </div>
+    </div>
   );
 };
 
