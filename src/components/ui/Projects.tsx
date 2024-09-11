@@ -1,11 +1,9 @@
-"use client";
-
-import { useGetProjectsQuery } from "@/redux/features/project/ProjectApi";
 import ProjectCard from "./ProjectCard";
 import { TProject } from "../../type/project.type";
+import { getAllProjects } from "@/services/projects";
 
-const Projects = () => {
-  const { data: projects } = useGetProjectsQuery(undefined);
+const Projects = async () => {
+  const { data: projects } = await getAllProjects();
 
   return (
     <div className="p-6 ">
@@ -14,7 +12,7 @@ const Projects = () => {
       </h1>
 
       <div className="container mx-auto my-10">
-        {projects?.data?.map((project: TProject) => (
+        {projects?.map((project: TProject) => (
           <ProjectCard key={project._id} project={project} />
         ))}
       </div>
