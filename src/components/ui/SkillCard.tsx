@@ -21,28 +21,11 @@ const SkillCard = ({ skill }: { skill: TSkill }) => {
       />
 
       <div className="flex z-10 text-start">
-        <h2 className="card-title  text-orange-600 font-extrabold uppercase ">
+        <h2 className="card-title shadow-xl text-blue-600 bg-gray-400 rounded-sm font-extrabold uppercase ">
           {name}
         </h2>
       </div>
     </motion.div>
-    // <motion.div
-    //   className={`flex flex-col   mx-auto items-center  rounded-full w-64 h-64 bg-gray-400`}
-    //   animate={{ y: [0, -10, 0] }}
-    //   transition={{ duration: 2, repeat: Infinity }}
-    // >
-    //   {/* <div className="relative "> */}
-    //   <div className="relative w-24 h-24 overflow-hidden">
-    //     {/* <Image
-    //       src={image}
-    //       alt="image"
-    //       className=" object-cover transform"
-    //       width={150}
-    //       height={150}
-    //     />
-    //     <h3 className="mt-4 text-lg font-semibold">{name}</h3>
-    //   </div>
-    // </motion.div>
   );
 };
 
