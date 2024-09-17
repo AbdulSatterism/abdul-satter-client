@@ -1,43 +1,54 @@
 "use client";
 
+import { useLoginMutation } from "@/redux/features/auth/authApi";
+import { setUser } from "@/redux/features/auth/authSlice";
+import { useAppDispatch } from "@/redux/hook";
+import { decodedToken } from "@/utils/decodedToken";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const Login = () => {
-  // const [error, setError] = useState('')
-  // const navigate = useNavigate();
-  // const location = useLocation();
+  const [Login, { isLoading }] = useLoginMutation();
+  const { register, handleSubmit } = useForm();
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
-  // const from = location.state?.from?.pathname || "/";
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const loginInfo = {
+      ...data,
+    };
 
-  // const handleLogin = event => {
-  //     setError('')
-  //     event.preventDefault();
-  //     const form = event.target;
-  //     const email = form.email.value;
-  //     const password = form.password.value;
-  //     signIn(email, password)
-  //         .then(result => {
-  //             const user = result.user;
-  //             form.reset();
-  //             navigate(from, { replace: true });
-  //         })
-  //         .catch((err) => {
-  //             const errorMessage = err.message;
-  //             setError(errorMessage)
-  //         });
-  // }
+    try {
+      const result = await Login(loginInfo).unwrap();
+
+      const user = decodedToken(result?.data);
+
+      //set token and user in local state
+      dispatch(setUser({ user, token: result?.data }));
+      toast.success(result?.message, { duration: 2000 });
+      if (result?.success) {
+        router.push("/dashboard");
+      }
+    } catch (err: any) {
+      toast.error(err?.error || err?.data?.message, {
+        duration: 2000,
+      });
+    }
+  };
 
   return (
     <div className="hero min-h-screen bg-white">
       <div className="hero-content flex-col md:flex-row-reverse">
-        <form className="card-body">
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="">
             <label className="label">
               <span className="label-text">Email</span>
             </label>
             <input
               type="email"
-              name="email"
+              {...register("email", { required: true })}
               placeholder="email"
               className="input input-bordered"
             />
@@ -49,7 +60,7 @@ const Login = () => {
             </label>
             <input
               type="password"
-              name="password"
+              {...register("password", { required: true })}
               placeholder="password"
               className="input input-bordered"
             />

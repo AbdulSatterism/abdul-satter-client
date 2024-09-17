@@ -1,12 +1,51 @@
 "use client";
 
-import { useGetSkillQuery } from "@/redux/features/skill/SkillApi";
+import {
+  useDeleteSkillMutation,
+  useGetSkillQuery,
+} from "@/redux/features/skill/SkillApi";
 import { TSkill } from "@/type/skill.type";
 import Image from "next/image";
 import { FaTrashAlt } from "react-icons/fa";
+import { toast } from "sonner";
+import Swal from "sweetalert2";
 
 const ManageSkill = () => {
-  const { data: skills } = useGetSkillQuery(undefined);
+  const { data: skills, isLoading } = useGetSkillQuery(undefined);
+  const [deleteSkill] = useDeleteSkillMutation();
+
+  const handleDelete = async (id: string) => {
+    try {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "you want to delete this one",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const result = await deleteSkill(id).unwrap();
+          if (result?.success) {
+            Swal.fire({
+              title: "Deleted!",
+              text: result?.message,
+              icon: "success",
+            });
+          }
+        }
+      });
+    } catch (err: any) {
+      toast.error(err?.error || err?.data?.message, {
+        duration: 2000,
+      });
+    }
+  };
+
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
 
   return (
     <div className="w-full">
@@ -22,7 +61,6 @@ const ManageSkill = () => {
               <th>#</th>
               <th>skill Image</th>
               <th>skill Name</th>
-              <th>Update</th>
               <th>Delete</th>
             </tr>
           </thead>
@@ -47,13 +85,12 @@ const ManageSkill = () => {
                 <td>
                   <div className="font-bold">{skill.name}</div>
                 </td>
+
                 <td>
-                  <button className="btn btn-primary btn-sm  text-white">
-                    update{" "}
-                  </button>
-                </td>
-                <td>
-                  <button className="btn btn-danger btn-sm  text-white">
+                  <button
+                    onClick={() => handleDelete(skill?._id)}
+                    className="btn bg-red-500 btn-md  text-white"
+                  >
                     <FaTrashAlt></FaTrashAlt>{" "}
                   </button>
                 </td>

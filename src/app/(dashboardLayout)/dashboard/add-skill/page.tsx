@@ -1,12 +1,45 @@
 "use client";
 
+import { envConfig } from "@/config/envConfig";
+import { useCreateSkillMutation } from "@/redux/features/skill/SkillApi";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const AddSkill = () => {
   const { register, handleSubmit } = useForm();
+  const [createSkill] = useCreateSkillMutation();
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+  const imageHostingURL = `https://api.imgbb.com/1/upload?key=${envConfig.imageToken}`;
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const toastId = toast.loading("creating....");
+    try {
+      // Upload image to ImgBB
+      const formData = new FormData();
+      formData.append("image", data.image[0]);
+
+      const res = await fetch(imageHostingURL, {
+        method: "POST",
+        body: formData,
+      });
+      const imgData = await res.json();
+      const imgURL = imgData?.data?.display_url;
+   
+      const skillInfo = {
+        ...data,
+        image: imgURL,
+      };
+
+      const result = await createSkill(skillInfo).unwrap();
+      if (result?.success) {
+        toast.success(result?.message, { id: toastId, duration: 2000 });
+      }
+    } catch (err: any) {
+      toast.error(err?.error || err?.data?.message, {
+        id: toastId,
+        duration: 2000,
+      });
+    }
   };
 
   return (

@@ -1,9 +1,10 @@
 "use client";
 
-import { store } from "@/redux/store";
+import { persistor, store } from "@/redux/store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactNode } from "react";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 import { Toaster } from "sonner";
 
 const queryClient = new QueryClient();
@@ -13,7 +14,9 @@ const Providers = ({ children }: { children: ReactNode }) => {
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <Toaster />
-        {children}
+        <PersistGate loading={null} persistor={persistor}>
+          {children}
+        </PersistGate>
       </Provider>
     </QueryClientProvider>
   );

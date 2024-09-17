@@ -1,38 +1,32 @@
 "use client";
-
-import { envConfig } from "@/config/envConfig";
-import { useCreateProjectMutation } from "@/redux/features/project/ProjectApi";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import {
+  useUpdateProjectMutation,
+  useSingleProjectQuery,
+} from "@/redux/features/project/ProjectApi";
 
-const AddProject = () => {
+type TParams = {
+  params: {
+    projectId: string;
+  };
+};
+const UpdateProject = ({ params }: TParams) => {
+  const { data: project, isLoading } = useSingleProjectQuery(params.projectId);
   const { register, handleSubmit } = useForm();
-
-  const [createProject, { isLoading }] = useCreateProjectMutation();
-
-  const imageHostingURL = `https://api.imgbb.com/1/upload?key=${envConfig.imageToken}`;
+  const [updateProject] = useUpdateProjectMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("creating....");
     try {
-      // Upload image to ImgBB
-      const formData = new FormData();
-      formData.append("image", data.image[0]);
-
-      const res = await fetch(imageHostingURL, {
-        method: "POST",
-        body: formData,
-      });
-      const imgData = await res.json();
-      const imgURL = imgData?.data?.display_url;
-
       const projectData = {
-        ...data,
-        image: imgURL,
-        technologies: [data.technologies],
+        id: params.projectId,
+        updateInfo: {
+          ...data,
+          technologies: [data.technologies],
+        },
       };
-
-      const result = await createProject(projectData).unwrap();
+      const result = await updateProject(projectData).unwrap();
       if (result?.success) {
         toast.success(result?.message, { id: toastId, duration: 2000 });
       }
@@ -44,9 +38,13 @@ const AddProject = () => {
     }
   };
 
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
+
   return (
     <div className="w-full px-10 my-10 ">
-      <h1 className="text-2xl text-center ">Add A new Project</h1>
+      <h1 className="text-2xl text-center ">update project</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex my-4">
           <div className="form-control w-full ml-4 ">
@@ -55,8 +53,8 @@ const AddProject = () => {
             </label>
             <input
               type="text"
-              placeholder="Project Name"
-              {...register("name", { required: true, maxLength: 120 })}
+              defaultValue={project?.data?.name}
+              {...register("name")}
               className="input input-bordered w-full  "
             />
           </div>
@@ -66,8 +64,8 @@ const AddProject = () => {
             </label>
             <input
               type="url"
-              placeholder="url"
-              {...register("liveSite", { required: true })}
+              defaultValue={project?.data?.liveSite}
+              {...register("liveSite")}
               className="input input-bordered w-full  "
             />
           </div>
@@ -82,8 +80,8 @@ const AddProject = () => {
             </label>
             <input
               type="url"
-              placeholder="url"
-              {...register("clientSite", { required: true })}
+              defaultValue={project?.data?.clientSite}
+              {...register("clientSite")}
               className="input input-bordered w-full  "
             />
           </div>
@@ -95,8 +93,8 @@ const AddProject = () => {
             </label>
             <input
               type="url"
-              placeholder="url"
-              {...register("serverSite", { required: true })}
+              defaultValue={project?.data?.serverSite}
+              {...register("serverSite")}
               className="input input-bordered w-full  "
             />
           </div>
@@ -109,8 +107,8 @@ const AddProject = () => {
             </label>
             <input
               type="text"
-              placeholder="technology"
-              {...register("technologies", { required: true })}
+              defaultValue={project?.data?.technologies}
+              {...register("technologies")}
               className="input input-bordered w-full  "
             />
           </div>
@@ -121,39 +119,27 @@ const AddProject = () => {
             <span className="label-text">Admin Description*</span>
           </label>
           <textarea
-            {...register("adminDescription", { required: true })}
+            {...register("adminDescription")}
             className="textarea textarea-bordered w-full"
-            placeholder="Project details"
+            defaultValue={project?.data?.adminDescription}
           ></textarea>
           <label className="label">
             <span className="label-text">User Description*</span>
           </label>
           <textarea
-            {...register("userDescription", { required: true })}
+            {...register("userDescription")}
             className="textarea textarea-bordered w-full"
-            placeholder="Project details"
+            defaultValue={project?.data?.userDescription}
           ></textarea>
         </div>
-
-        <div className="form-control w-full mb-4">
-          <label className="label">
-            <span className="label-text">Project Image*</span>
-          </label>
-          <input
-            type="file"
-            {...register("image", { required: true })}
-            className="file-input file-input-bordered w-full  "
-          />
-        </div>
         <input
-          disabled={isLoading}
           className="btn btn-sm mt-4 btn-primary "
           type="submit"
-          value="Add Project"
+          value="update Project"
         />
       </form>
     </div>
   );
 };
 
-export default AddProject;
+export default UpdateProject;

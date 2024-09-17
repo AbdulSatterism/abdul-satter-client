@@ -1,33 +1,50 @@
+"use client";
+
+import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
+import { SubmitHandler, useForm, FieldValues } from "react-hook-form";
+import { toast } from "sonner";
 
 const Register = () => {
+  const { register, handleSubmit } = useForm();
+  const [Register, { isLoading }] = useRegisterMutation();
+  const router = useRouter();
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const registerInfo = {
+      ...data,
+      role: "user",
+    };
+
+    try {
+      const result = await Register(registerInfo).unwrap();
+      console.log(result);
+      toast.success(result?.message, { duration: 2000 });
+      if (result?.success) {
+        router.push("/login");
+      }
+    } catch (err: any) {
+      toast.error(err?.error || err?.data?.message, {
+        duration: 2000,
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen hero bg-base-200">
       <div className="flex-col hero-content md:flex-row-reverse">
-        <form className="card-body">
-          <div className="">
-            <label className="label">
-              <span className="label-text">Name</span>
-            </label>
-            <input
-              type="text"
-              required
-              name="name"
-              placeholder="email"
-              className="input input-bordered"
-            />
-          </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="">
             <label className="label">
               <span className="label-text">Email</span>
             </label>
             <input
               type="email"
-              required
-              name="email"
               placeholder="email"
               className="input input-bordered"
+              {...register("email", { required: true })}
             />
           </div>
 
@@ -37,8 +54,7 @@ const Register = () => {
             </label>
             <input
               type="password"
-              required
-              name="password"
+              {...register("password", { required: true })}
               placeholder="password"
               className="input input-bordered"
             />
@@ -46,6 +62,7 @@ const Register = () => {
 
           <div className="mt-6 ">
             <input
+              disabled={isLoading}
               className="w-full btn btn-primary"
               type="submit"
               value="Signup"
