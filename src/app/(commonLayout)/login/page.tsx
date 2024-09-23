@@ -39,7 +39,7 @@ const Login = () => {
   };
 
   return (
-    <div className="hero min-h-screen bg-white">
+    <div className="hero min-h-screen bg-[#01051b]">
       <div className="hero-content flex-col md:flex-row-reverse">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="">

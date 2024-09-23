@@ -6,7 +6,7 @@ const Skills = async () => {
   const { data: skills } = await getAllSkills();
 
   return (
-    <div className="p-6 ">
+    <div className="p-6 bg-[#01051b]">
       <h1 className=" mt-5 text-3xl font-bold  text-blue-600 uppercase text-end">
         skills
       </h1>

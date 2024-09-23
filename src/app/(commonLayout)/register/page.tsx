@@ -33,7 +33,7 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen hero bg-base-200">
+    <div className="min-h-screen hero bg-[#01051b]">
       <div className="flex-col hero-content md:flex-row-reverse">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="">

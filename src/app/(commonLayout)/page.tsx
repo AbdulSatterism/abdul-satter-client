@@ -1,26 +1,26 @@
 import Banner from "@/components/banner/Banner";
-
-// import Circle from "@/components/ui/Circle";
-import Loading from "@/components/ui/Loading";
+import LoadingBanner from "@/components/Loading/LoadingBanner";
+import LoadingProject from "@/components/Loading/LoadingProject";
+import LoadingSkill from "@/components/Loading/LoadingSkill";
 import Projects from "@/components/ui/Projects";
 import Skills from "@/components/ui/Skills";
-// import { getAllSkills } from "@/services/skills";
+import { developerInfo } from "@/services/developerInfo";
+import { getAllSkills } from "@/services/skills";
 import { Suspense } from "react";
 
-export default function HomePage() {
-  // const { data: skills } = await getAllSkills();
-  return (
-    <div className="bg-gray-950 text-gray-400 ">
-      <Banner />
+export default async function HomePage() {
+  const { data: devInfo } = await developerInfo();
+  const { data: skills } = await getAllSkills();
 
-      {/* <Circle
-        skills={skills}
-        developerImage="https://i.ibb.co.com/TBtXNzC/my-Image-removebg-preview-1.png"
-      /> */}
-      <Suspense fallback={<Loading />}>
+  return (
+    <div className="bg-[#01051b] text-gray-400 ">
+      <Suspense fallback={<LoadingBanner />}>
+        <Banner devInfo={devInfo} skills={skills} />
+      </Suspense>
+      <Suspense fallback={<LoadingSkill />}>
         <Skills />
       </Suspense>
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<LoadingProject />}>
         <Projects />
       </Suspense>
     </div>

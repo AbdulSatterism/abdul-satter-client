@@ -6,7 +6,7 @@ const Projects = async () => {
   const { data: projects } = await getAllProjects();
 
   return (
-    <div className="p-6 ">
+    <div className="p-6 bg-[#01051b]">
       <h1 className=" mt-5 text-3xl font-bold  text-blue-600 uppercase text-end">
         projects
       </h1>
