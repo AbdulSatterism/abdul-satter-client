@@ -7,25 +7,48 @@ const DeveloperApi = baseApi.injectEndpoints({
         url: "/dev-info",
         method: "GET",
       }),
+      providesTags: ["dev"],
     }),
 
-    // createSkill: builder.mutation({
-    //   query: (info) => ({
-    //     url: "/skills/create-skill",
-    //     method: "POST",
-    //     body: info,
-    //   }),
-    //   invalidatesTags: ["skill"],
-    // }),
+    singleDeveloper: builder.query({
+      query: (id) => ({
+        url: `/dev-info/${id}`,
+        method: "GET",
+      }),
+    }),
 
-    // deleteSkill: builder.mutation({
-    //   query: (id) => ({
-    //     url: `/skills/${id}`,
-    //     method: "DELETE",
-    //   }),
-    //   invalidatesTags: ["skill"],
-    // }),
+    createDevInfo: builder.mutation({
+      query: (info) => ({
+        url: "/dev-info/create-dev-info",
+        method: "POST",
+        body: info,
+      }),
+      invalidatesTags: ["dev"],
+    }),
+
+    updateDev: builder.mutation({
+      query: (args) => ({
+        url: `/dev-info/${args?.id}`,
+        method: "PUT",
+        body: args?.updateInfo,
+      }),
+      invalidatesTags: ["dev"],
+    }),
+
+    deleteDev: builder.mutation({
+      query: (id) => ({
+        url: `/dev-info/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["dev"],
+    }),
   }),
 });
 
-export const { useGetDevInfoQuery } = DeveloperApi;
+export const {
+  useGetDevInfoQuery,
+  useUpdateDevMutation,
+  useDeleteDevMutation,
+  useCreateDevInfoMutation,
+  useSingleDeveloperQuery,
+} = DeveloperApi;

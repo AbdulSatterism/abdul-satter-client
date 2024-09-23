@@ -44,8 +44,19 @@ const DashboardSidebar = ({ children }: { children: React.ReactNode }) => {
           </li>
           <li className=" ">
             <Link href="/dashboard/add-skill">
-              {" "}
               <SiSkillshare></SiSkillshare>Add Skill{" "}
+            </Link>
+          </li>
+          <li className=" ">
+            <Link href="/dashboard/add-dev">
+              <FaUsers />
+              Add Dev.
+            </Link>
+          </li>
+          <li className=" ">
+            <Link href="/dashboard/manage-dev">
+              <FaUsers />
+              Manage dev
             </Link>
           </li>
           <li className=" ">

@@ -1,6 +1,7 @@
 export interface TDeveloper {
   _id: string;
   name: string;
+  image: string;
   title: string;
   summary: string;
   email: string;
