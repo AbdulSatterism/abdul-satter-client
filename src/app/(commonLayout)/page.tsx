@@ -2,6 +2,7 @@ import Banner from "@/components/banner/Banner";
 import LoadingBanner from "@/components/Loading/LoadingBanner";
 import LoadingProject from "@/components/Loading/LoadingProject";
 import LoadingSkill from "@/components/Loading/LoadingSkill";
+import Contact from "@/components/ui/Contact";
 import Projects from "@/components/ui/Projects";
 import Skills from "@/components/ui/Skills";
 import { developerInfo } from "@/services/developerInfo";
@@ -23,6 +24,8 @@ export default async function HomePage() {
       <Suspense fallback={<LoadingProject />}>
         <Projects />
       </Suspense>
+
+      <Contact />
     </div>
   );
 }

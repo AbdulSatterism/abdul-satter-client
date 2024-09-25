@@ -1,10 +1,21 @@
+"use client";
 import Link from "next/link";
 import { FaBars, FaHome, FaUsers } from "react-icons/fa";
 import { GoProjectSymlink } from "react-icons/go";
 import { MdManageAccounts } from "react-icons/md";
 import { SiSkillshare } from "react-icons/si";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const DashboardSidebar = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    Cookies.remove("accessToken");
+
+    router.push("/");
+  };
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -71,9 +82,12 @@ const DashboardSidebar = ({ children }: { children: React.ReactNode }) => {
           </li>
 
           <div className="divider"></div>
-          <li className="bg-fuchsia-200 rounded mb-2">
+          <li className="rounded mb-2">
             <Link href="/">Home</Link>
           </li>
+          <button onClick={handleLogout} className="btn outline btn-accent">
+            Logout
+          </button>
         </ul>
       </div>
     </div>

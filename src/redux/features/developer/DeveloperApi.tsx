@@ -42,6 +42,14 @@ const DeveloperApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["dev"],
     }),
+
+    sentMail: builder.mutation({
+      query: (mailInfo) => ({
+        url: "/contact",
+        method: "POST",
+        body: mailInfo,
+      }),
+    }),
   }),
 });
 
@@ -51,4 +59,5 @@ export const {
   useDeleteDevMutation,
   useCreateDevInfoMutation,
   useSingleDeveloperQuery,
+  useSentMailMutation,
 } = DeveloperApi;
