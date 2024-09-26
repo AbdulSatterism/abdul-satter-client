@@ -15,15 +15,6 @@ interface IParams {
   skills: TSkill[];
 }
 
-const skillLogos = [
-  "https://i.ibb.co.com/RQtb6Bp/react-removebg-preview.png",
-  "https://i.ibb.co.com/RQtb6Bp/react-removebg-preview.png",
-  "https://i.ibb.co.com/RQtb6Bp/react-removebg-preview.png",
-  "https://i.ibb.co.com/RQtb6Bp/react-removebg-preview.png",
-  "https://i.ibb.co.com/RQtb6Bp/react-removebg-preview.png",
-  "https://i.ibb.co.com/RQtb6Bp/react-removebg-preview.png",
-];
-
 const Banner = ({ devInfo, skills }: IParams) => {
   const mountRef = useRef<HTMLDivElement>(null);
 
@@ -48,7 +39,7 @@ const Banner = ({ devInfo, skills }: IParams) => {
 
     // Add skill logos as sprites in circular layout
     const logos = skills.map((skill, index) => {
-      const angle = (index / skillLogos.length) * Math.PI * 2; // Evenly distribute logos around the circle
+      const angle = (index / skills.length) * Math.PI * 2; // Evenly distribute logos around the circle
       const texture = new THREE.TextureLoader().load(skill.image);
       const material = new THREE.SpriteMaterial({ map: texture });
       const sprite = new THREE.Sprite(material);

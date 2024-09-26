@@ -14,7 +14,7 @@ const Navbar = () => {
         <Link href="/skills">Skill</Link>
       </li>
       <li className="font-semibold text-[16px] text-white  items hover:text-orange-500 ">
-        <Link href="#">Contact</Link>
+        <Link href="/contact">Contact</Link>
       </li>
     </>
   );

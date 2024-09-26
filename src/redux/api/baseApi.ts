@@ -1,6 +1,7 @@
 // Need to use the React-specific entry point to allow generating React hooks
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
+import { cookies } from "next/headers";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "https://portfolio-server-alpha-silk.vercel.app/api",
