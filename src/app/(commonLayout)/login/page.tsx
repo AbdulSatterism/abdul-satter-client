@@ -1,9 +1,6 @@
 "use client";
 
 import { useLoginMutation } from "@/redux/features/auth/authApi";
-import { setUser } from "@/redux/features/auth/authSlice";
-import { useAppDispatch } from "@/redux/hook";
-import { decodedToken } from "@/utils/decodedToken";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
@@ -13,7 +10,6 @@ const Login = () => {
   const [Login, { isLoading }] = useLoginMutation();
   const { register, handleSubmit } = useForm();
   const router = useRouter();
-  const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const loginInfo = {
@@ -22,11 +18,8 @@ const Login = () => {
 
     try {
       const result = await Login(loginInfo).unwrap();
-      const user = decodedToken(result?.token);
-      dispatch(setUser({ user, token: result?.token }));
 
       document.cookie = `accessToken=${result?.data}`;
-
       toast.success(result?.message, { duration: 2000 });
       if (result?.success) {
         router.push("/dashboard");

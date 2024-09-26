@@ -6,16 +6,12 @@ import { MdManageAccounts } from "react-icons/md";
 import { SiSkillshare } from "react-icons/si";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "@/redux/hook";
-import { logout } from "@/redux/features/auth/authSlice";
 
 const DashboardSidebar = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
-  const dispatch = useAppDispatch();
 
   const handleLogout = () => {
     Cookies.remove("accessToken");
-    dispatch(logout());
     router.push("/");
   };
 
