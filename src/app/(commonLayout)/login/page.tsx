@@ -66,6 +66,7 @@ const Login = () => {
 
           <div className=" mt-6">
             <input
+              disabled={isLoading}
               className="btn btn-primary w-full"
               type="submit"
               value="Login"
