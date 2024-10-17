@@ -1,10 +1,11 @@
 "use server";
 
 export const getAllProjects = async () => {
-  const res = await fetch(`${process.env.BASE_API}/projects`, {
-    cache: "force-cache",
-    next: { revalidate: 3600 },
-  });
+  const res = await fetch(`${process.env.BASE_API}/projects`);
+  // export const getAllProjects = async () => {
+  //   const res = await fetch(`${process.env.BASE_API}/projects`, {
+  //     next: { revalidate: 60 },
+  //   });
 
   return res.json();
 };
