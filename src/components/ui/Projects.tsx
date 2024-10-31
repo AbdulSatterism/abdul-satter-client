@@ -7,11 +7,12 @@ const Projects = async () => {
 
   return (
     <div className="p-6 bg-[#01051b] text-gray-300">
-      <h1 className=" mt-5 text-3xl font-bold  text-blue-600 uppercase text-end">
-        projects
+      <h1 className="mb-10 py-6 text-5xl  text-[#0ef79d] uppercase text-center">
+        latest projects
+        <div className="bg-gradient-to-r from-[#0ef79d] via-[#2b027c] to-[#0ef79d] h-1 text-center w-1/4 mx-auto rounded-sm mt-2"></div>
       </h1>
 
-      <div className="container mx-auto my-10">
+      <div className=" grid sm:grid-cols-1 lg:grid-cols-2 gap-2 mx-auto my-10">
         {projects?.map((project: TProject) => (
           <ProjectCard key={project._id} project={project} />
         ))}

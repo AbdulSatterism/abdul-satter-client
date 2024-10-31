@@ -3,67 +3,24 @@ import Image from "next/image";
 import Link from "next/link";
 
 const ProjectCard = ({ project }: { project: TProject }) => {
-  const {
-    name,
-    image,
-    userDescription,
-    adminDescription,
-    clientSite,
-    serverSite,
-    liveSite,
-    technologies,
-  } = project;
+  const { image, _id } = project;
   return (
-    <div className="hero-content flex-col lg:flex-row-reverse">
+    <div className="bg-gradient-to-r from-[#0ef79d] via-[#2b027c] to-[#0ef79d] image___warp w-11/12 h-[350px]  gradient-border  relative game__box p-[2px] rounded-xl">
       <Image
+        className="w-[100%] h-[100%] brightness-100  object-cover  overflow-x-hidden relative rounded-xl "
         src={image}
-        className=" rounded-lg shadow-2xl object-cover"
-        width={500}
-        height={500}
-        alt=""
+        alt="image"
+        height={100}
+        width={100}
       />
-      <div>
-        <h1 className="text-5xl font-bold">{name}</h1>
-        <div className="justify-center items-center ">
-          <p className="py-6">
-            <span className="font-bold text-lg text-blue-600">
-              user guide :
-            </span>
-            {userDescription}
-          </p>
-          <p className="py-6">
-            {" "}
-            <span className="font-bold text-lg text-blue-600">
-              admin guide :
-            </span>
-            {adminDescription}
-          </p>
-        </div>
 
-        <div className="my-2">
-          <span className="font-bold text-lg text-blue-600">Technology :</span>
-          {technologies.map((tech: string, i: number) => (
-            <span
-              key={i}
-              className="items-center ml-2 font-semibold font-serif"
-            >
-              {tech} |
-            </span>
-          ))}
-        </div>
-
-        <div className="text-end font-bold text-blue-600">
-          <Link className=" mx-2 " href={clientSite} target="_black">
-            client site
-          </Link>
-          <Link className=" mx-2 " href={serverSite} target="_black">
-            server site
-          </Link>
-          <Link className=" mx-2 " href={liveSite} target="_black">
-            Live site
-          </Link>
-        </div>
-      </div>
+      <Link href={`/${_id}`}>
+        <button className="border-[#2b027c] border  text-white font-semibold rounded p-[1px] text-center items-center  top-0 right-0 bottom-0 left-0 m-auto  video__btn">
+          <span className="flex w-40  hover:bg-gradient-to-r from-[#0ef79d]   to-[#2b027c] justify-center font-semibold bg-gray-800 rounded py-3 px-4">
+            Details
+          </span>
+        </button>
+      </Link>
     </div>
   );
 };

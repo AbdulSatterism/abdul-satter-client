@@ -4,7 +4,7 @@ const Footer = () => {
   const date = new Date().getFullYear();
 
   return (
-    <footer className="p-20  border-t-2 border-gray-600 text-white bg-[#01051b] footer footer-center">
+    <footer className="p-20  text-white bg-[#01051b] footer footer-center">
       <div>
         <p className="font-bold">
           MD. Abdul Satter <br />

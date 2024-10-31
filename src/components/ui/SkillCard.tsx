@@ -10,18 +10,18 @@ const SkillCard = ({ skill }: { skill: TSkill }) => {
     <motion.div
       animate={{ y: [0, -10, 0] }}
       transition={{ duration: 2, repeat: Infinity }}
-      className="card image-full items-center w-48 h-48 rounded-full shadow-sm shadow-gray-400 bg-white border-2 border-gray-600 mx-auto "
+      className="card image-full items-center w-48 h-48 rounded-full shadow-sm shadow-gray-400 bg-gradient-to-r from-[#0ef79d] via-[#2b027c] to-[#0ef79d]   mx-auto "
     >
       <Image
-        className=" object-cover transform rounded-full w-44 h-44 bg-white mx-auto text-center shadow-2xl "
+        className=" object-cover transform rounded-full w-[184px] h-[184px] bg-gray-800 mx-auto text-center shadow-2xl "
         src={image}
         alt="Shoes"
         width={230}
         height={230}
       />
 
-      <div className="flex z-10 text-start">
-        <h2 className="card-title shadow-xl text-blue-600 bg-gray-400 rounded-sm font-extrabold uppercase ">
+      <div className="flex z-10 text-start rounded-sm">
+        <h2 className="card-title shadow-xl text-white bg-gray-800  font-extrabold uppercase ">
           {name}
         </h2>
       </div>

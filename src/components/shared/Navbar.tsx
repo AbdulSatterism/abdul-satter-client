@@ -20,7 +20,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-[#030c3c] border-b-2 border-gray-600">
+    <div className="navbar bg-gradient-to-r from-[#0ef79d] via-[#2b027c] to-[#0ef79d]">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -41,7 +41,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm text-white bg-[#030c3c] dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm text-white bg-gradient-to-r from-[#0ef79d] via-[#2b027c] to-[#0ef79d] dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             {navItems}
           </ul>
@@ -50,7 +50,7 @@ const Navbar = () => {
           <Image
             src={logo}
             alt="logo"
-            className="w-20 h-20 shadow-lg bg-[#030c3c]"
+            className="w-20 h-20 rounded-full bg-gradient-to-r from-[#0ef79d] via-[#2b027c] to-[#0ef79d]"
           />
         </div>
       </div>

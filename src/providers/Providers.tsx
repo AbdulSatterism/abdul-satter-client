@@ -6,8 +6,10 @@ import { ReactNode } from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { Toaster } from "sonner";
-
+import AOS from "aos";
 const queryClient = new QueryClient();
+
+AOS.init();
 
 const Providers = ({ children }: { children: ReactNode }) => {
   return (

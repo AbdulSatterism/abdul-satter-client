@@ -1,8 +1,10 @@
+import AboutMe from "@/components/about/AboutMe";
 import Banner from "@/components/banner/Banner";
 import LoadingBanner from "@/components/Loading/LoadingBanner";
 import LoadingProject from "@/components/Loading/LoadingProject";
 import LoadingSkill from "@/components/Loading/LoadingSkill";
 import Contact from "@/components/ui/Contact";
+import EducationQualification from "@/components/ui/EducationQualification";
 import Projects from "@/components/ui/Projects";
 import Skills from "@/components/ui/Skills";
 import { developerInfo } from "@/services/developerInfo";
@@ -16,7 +18,7 @@ export default async function HomePage() {
   return (
     <div className="bg-[#01051b] text-gray-400 ">
       <Suspense fallback={<LoadingBanner />}>
-        <Banner devInfo={devInfo} skills={skills} />
+        <Banner devInfo={devInfo} />
       </Suspense>
       <Suspense fallback={<LoadingSkill />}>
         <Skills />
@@ -25,6 +27,10 @@ export default async function HomePage() {
         <Projects />
       </Suspense>
 
+      <Suspense fallback={<LoadingBanner />}>
+        <AboutMe skills={skills} />
+      </Suspense>
+      <EducationQualification />
       <Contact />
     </div>
   );

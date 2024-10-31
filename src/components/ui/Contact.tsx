@@ -34,11 +34,13 @@ const Contact: React.FC = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-md mx-auto p-12   bg-[#01051b] rounded-lg shadow-lg shadow-blue-700"
+      className="max-w-md mx-auto p-12   bg-[#01051b] rounded-md shadow-lg shadow-[#2b027c]"
     >
-      <h2 className="text-3xl font-bold mb-6 text-center uppercase text-blue-600">
-        Get in Touch
-      </h2>
+      <h1 className="mb-4 text-5xl  text-[#0ef79d] uppercase text-center">
+        get in touch
+        <div className="bg-gradient-to-r from-[#0ef79d] via-[#2b027c] to-[#0ef79d] h-1 text-center w-2/5 mx-auto rounded-sm mt-2"></div>
+      </h1>
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="space-y-4">
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -48,7 +50,7 @@ const Contact: React.FC = () => {
             <input
               type="text"
               {...register("name", { required: true })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2  transition duration-200"
             />
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -58,7 +60,7 @@ const Contact: React.FC = () => {
             <input
               type="email"
               {...register("email", { required: true })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 transition duration-200"
             />
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -68,17 +70,20 @@ const Contact: React.FC = () => {
             <textarea
               {...register("message", { required: true })}
               rows={4}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 resize-none"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2  transition duration-200 resize-none"
             ></textarea>
           </motion.div>
+
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             type="submit"
             disabled={isLoading}
-            className="w-full py-2 px-4 bg-gradient-to-r from-orange-500 to-blue-950 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200"
+            className="bg-gradient-to-r from-[#0ef79d] via-[#2b027c] to-[#0ef79d] w-full text-white font-semibold rounded p-[1px] text-center items-center"
           >
-            Send Message
+            <span className="flex w-full  hover:bg-gradient-to-r from-[#0ef79d]   to-[#2b027c] justify-center font-semibold bg-gray-800 rounded py-3 px-4">
+              Send Message
+            </span>
           </motion.button>
         </div>
       </form>

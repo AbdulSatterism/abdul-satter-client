@@ -1,3 +1,57 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn_hero {
+  width: 200px;
+  border-radius: 50px;
+  color: #046a77;
+  background-color: #ffff;
+  transition: all 1s ease-in;
+}
+
+.service__hero__btn {
+  width: 200px;
+  display: block;
+  margin: auto;
+  height: 50px;
+  border-radius: 50px;
+  color: #ffff;
+  background-color: #ffff;
+  transition: all 1s ease-in;
+}
+
+.image___warp img {
+  object-position: top center;
+  transition: all 3s ease-in-out;
+}
+.image___warp:hover img {
+  object-position: bottom center;
+}
+
+.game__box {
+  position: relative;
+  margin: 0 auto;
+}
+
+.video__btn {
+  position: relative;
+  z-index: 1;
+  width: 40%;
+  outline: none;
+  border: none;
+}
+.video__btn {
+  position: absolute;
+  z-index: 2;
+  display: none;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+}
+
+.game__box:hover .video__btn {
+  display: block;
+}

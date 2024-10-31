@@ -7,11 +7,7 @@ const AllProject = async () => {
 
   return (
     <div className="p-6 min-h-screen bg-[#01051b] text-gray-300">
-      <h1 className=" mt-5 text-3xl font-bold  text-blue-600 uppercase text-end">
-        projects
-      </h1>
-
-      <div className="container mx-auto my-10">
+      <div className="grid sm:grid-cols-1 lg:grid-cols-2  mx-auto my-10">
         {projects?.map((project: TProject) => (
           <ProjectCard key={project._id} project={project} />
         ))}
