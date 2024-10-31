@@ -4,23 +4,23 @@ export function middleware(request: NextRequest) {
   // Check if the user is authenticated
   const token = request.cookies.get("accessToken")?.value;
 
-  // Protected routes
+  // Define protected routes
   const protectedRoutes = ["/register", "/dashboard"];
 
-  // Check if the current route is protected
+  // Check if the current route matches a protected route
   const isProtectedRoute = protectedRoutes.some((route) =>
     request.nextUrl.pathname.startsWith(route)
   );
 
   if (isProtectedRoute && !token) {
-    // If the user is not authenticated, redirect to the login page
+    // Redirect to login if user is not authenticated
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // Allow the request if the user is authenticated or the route is not protected
+  // Proceed to the next middleware or request handling
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/register", "/dashboard", "/dashboard/:page*"],
+  matcher: ["/register", "/dashboard/:path*"],
 };

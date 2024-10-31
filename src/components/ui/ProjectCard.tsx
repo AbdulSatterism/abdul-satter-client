@@ -7,7 +7,7 @@ const ProjectCard = ({ project }: { project: TProject }) => {
   return (
     <div className="bg-gradient-to-r from-[#0ef79d] via-[#2b027c] to-[#0ef79d] image___warp w-11/12 h-[350px]  gradient-border  relative game__box p-[2px] rounded-xl">
       <Image
-        className="w-[100%] h-[100%] brightness-100  object-cover  overflow-x-hidden relative rounded-xl "
+        className="w-[100%] h-[100%]  object-cover  overflow-x-hidden relative rounded-xl "
         src={image}
         alt="image"
         height={100}
