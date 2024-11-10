@@ -12,7 +12,7 @@ const Projects = async () => {
         <div className="bg-gradient-to-r from-[#0ef79d] via-[#2b027c] to-[#0ef79d] h-1 text-center w-1/4 mx-auto rounded-sm mt-2"></div>
       </h1>
 
-      <div className=" grid sm:grid-cols-1 lg:grid-cols-2 gap-2 mx-auto my-10">
+      <div className=" grid sm:grid-cols-1 lg:grid-cols-2 gap-y-4 gap-x-0 mx-auto">
         {projects?.map((project: TProject) => (
           <ProjectCard key={project._id} project={project} />
         ))}

@@ -12,7 +12,7 @@ const Skills = async () => {
         <div className="bg-gradient-to-r from-[#0ef79d] via-[#2b027c] to-[#0ef79d] h-1 text-center w-1/4 mx-auto rounded-sm mt-2"></div>
       </h1>
 
-      <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-y-2 gap-x-0 mx-auto my-10">
+      <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1  gap-x-0 gap-y-4  mx-auto">
         {skills?.map((skill: TSkill) => (
           <SkillCard key={skill._id} skill={skill} />
         ))}

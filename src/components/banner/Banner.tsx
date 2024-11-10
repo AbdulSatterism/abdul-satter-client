@@ -11,7 +11,7 @@ interface IParams {
 
 const Banner = ({ devInfo }: IParams) => {
   return (
-    <div className="bg-[#01051b] py-10 min-h-screen overflow-hidden">
+    <div className="bg-[#01051b] p-6 min-h-screen overflow-hidden">
       {devInfo?.slice(0, 1).map((info: TDeveloper) => (
         <div
           key={info?._id}
