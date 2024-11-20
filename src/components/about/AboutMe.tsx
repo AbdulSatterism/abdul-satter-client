@@ -98,22 +98,24 @@ const AboutMe = ({ skills }: IParams) => {
 
         {/* Right Side: Developer Info */}
         <div className=" md:w-1/2 text-center md:text-left mb-8 md:mb-0 ">
-          <h1 className="text-3xl font-bold text-white mb-4">
-            Hi this is <br /> Abdul Satter
-          </h1>
+          <h1 className="text-3xl font-bold  text-[#0ef79d] mb-4">Hay</h1>
 
           <p className="text-xl text-gray-400 mb-6 justify-center ">
-            I am MD. Abdul Satter, full stack developer (MERN) and technology
-            Javascript | Typescript | React | Next js | Redux | Node js |
-            Express js | Mongodb |. I completed my Diploma In Computer Science
-            and Engineering at Aptouch Polytechnic Institute, Dinajpur. Now I
-            studies BSc in Computer Science and Engineering at Manarat
-            International University,Ashuliya, Dhaka, Bangladesh. I am honest,
-            sincere and hardworking person. I am good at frontend and backend
-            development. But I am more comfort and flexible in backend
-            development. I want to grow my future position as a backend
-            developer and after two or three years later I want to see myself as
-            a software analyst.
+            I am{" "}
+            <span className="text-3xl font-bold text-white ">
+              Md. Abdul Satter
+            </span>
+            , full stack developer (MERN) and technology Javascript | Typescript
+            | React | Next js | Redux | Node js | Express js | Mongodb |. I
+            completed my Diploma In Computer Science and Engineering at Aptouch
+            Polytechnic Institute, Dinajpur. Now I studies BSc in Computer
+            Science and Engineering at Manarat International
+            University,Ashuliya, Dhaka, Bangladesh. I am honest, sincere and
+            hardworking person. I am good at frontend and backend development.
+            But I am more comfort and flexible in backend development. I want to
+            grow my future position as a backend developer and after 3 or 4
+            years later I want to see myself as a software analyst or project
+            lead.
           </p>
         </div>
       </div>

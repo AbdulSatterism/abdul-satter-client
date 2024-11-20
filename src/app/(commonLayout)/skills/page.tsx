@@ -7,10 +7,6 @@ const AllSkill = async () => {
 
   return (
     <div className="p-6 min-h-screen bg-[#01051b] text-gray-300">
-      <h1 className=" mt-5 text-3xl font-bold  text-blue-600 uppercase text-end">
-        skills
-      </h1>
-
       <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-y-2 gap-x-0 mx-auto my-10">
         {skills?.map((skill: TSkill) => (
           <SkillCard key={skill._id} skill={skill} />
